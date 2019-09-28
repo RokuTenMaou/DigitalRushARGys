@@ -23,7 +23,7 @@ MonoBehaviour:
       m_GuidHigh: 6132460440599988985
     m_Size: {x: 0.254, y: 0.31455448}
     m_SpecifySize: 0
-    m_Name: Rafflesia
+    m_Name: Main
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
       m_GuidLow: 5727542503021929702
@@ -33,7 +33,7 @@ MonoBehaviour:
       m_GuidHigh: 11115700084390674408
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: 2
+    m_Name: 1
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
       m_GuidLow: 4815487768311043111
@@ -43,7 +43,7 @@ MonoBehaviour:
       m_GuidHigh: 10512059613354296411
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: 6
+    m_Name: 2
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
       m_GuidLow: 5021165043600250373

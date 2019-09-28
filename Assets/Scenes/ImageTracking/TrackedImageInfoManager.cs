@@ -30,6 +30,7 @@ public class TrackedImageInfoManager : MonoBehaviour
     [Tooltip("If an image is detected but no source texture can be found, this texture is used instead.")]
     Texture2D m_DefaultTexture;
 
+    public GameObject[] objectsToManage;
     /// <summary>
     /// If an image is detected but no source texture can be found,
     /// this texture is used instead.
@@ -66,16 +67,25 @@ public class TrackedImageInfoManager : MonoBehaviour
         // Update information about the tracked image
         var text = canvas.GetComponentInChildren<Text>();
         text.text = string.Format(
-            "{0}\ntrackingState: {1}\nGUID: {2}\nReference size: {3} cm\nDetected size: {4} cm",
+            "{0}\ntrackingState: {1}\nGUID: {2}\nReference size: {3} cm\nDetected size: {4} cm {5} Position:",
             trackedImage.referenceImage.name,
             trackedImage.trackingState,
             trackedImage.referenceImage.guid,
             trackedImage.referenceImage.size * 100f,
-            trackedImage.size * 100f);
+            trackedImage.size * 100f,
+            trackedImage.transform.position);
 
         var planeParentGo = trackedImage.transform.GetChild(0).gameObject;
         var planeGo = planeParentGo.transform.GetChild(0).gameObject;
 
+        foreach(GameObject obj in objectsToManage)
+        {
+            if (trackedImage.referenceImage.name == obj.name)
+            {
+                obj.transform.position = trackedImage.gameObject.transform.position;
+                obj.transform.rotation = trackedImage.gameObject.transform.rotation;
+            }
+        }
         // Disable the visual plane if it is not being tracked
         if (trackedImage.trackingState != TrackingState.None)
         {
@@ -85,8 +95,8 @@ public class TrackedImageInfoManager : MonoBehaviour
             trackedImage.transform.localScale = new Vector3(trackedImage.size.x, 1f, trackedImage.size.y);
 
             // Set the texture
-            var material = planeGo.GetComponentInChildren<MeshRenderer>().material;
-            material.mainTexture = (trackedImage.referenceImage.texture == null) ? defaultTexture : trackedImage.referenceImage.texture;
+            //var material = planeGo.GetComponentInChildren<MeshRenderer>().material;
+            //material.mainTexture = (trackedImage.referenceImage.texture == null) ? defaultTexture : trackedImage.referenceImage.texture;
         }
         else
         {
