@@ -60,14 +60,17 @@ public class TrackedImageInfoManager : MonoBehaviour
 
     void UpdateInfo(ARTrackedImage trackedImage)
     {
+
+        
         // Set canvas camera
         var canvas = trackedImage.GetComponentInChildren<Canvas>();
+        
         canvas.worldCamera = worldSpaceCanvasCamera;
-
+       
         // Update information about the tracked image
         var text = canvas.GetComponentInChildren<Text>();
         text.text = string.Format(
-            "{0}\ntrackingState: {1}\nGUID: {2}\nReference size: {3} cm\nDetected size: {4} cm {5} Position:",
+            "{0}\nНайден: {1}\nНомер обьекта: {2}\nРазмеры: {3} cm\nDetected size: {4} cm {5} Позиция:",
             trackedImage.referenceImage.name,
             trackedImage.trackingState,
             trackedImage.referenceImage.guid,
